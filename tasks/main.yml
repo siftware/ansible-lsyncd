@@ -90,7 +90,7 @@
   when: inventory_hostname != lsyncd_master_hostname
 
 - name: ssh into slaves once to save host keys on master
-  command: ssh -i {{ lsyncd_master_identity_file }} -l {{ lsyncd_slave_username }} -o StrictHostKeyChecking=no {{ item }}
+  command: ssh -i {{ lsyncd_master_identity_file }} -l {{ lsyncd_slave_username }} -o StrictHostKeyChecking=no {{ item }} -C 'date'
   with_items: '{{ lsyncd_slave_hosts }}'
   when: inventory_hostname == lsyncd_master_hostname
 
